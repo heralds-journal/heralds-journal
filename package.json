@@ -2,13 +2,14 @@
   "name": "herald-journal",
   "version": "0.1.0",
   "license": "MIT",
+  "type": "module",
   "scripts": {
     "dev": "next dev",
     "dev:turbopack": "next dev --turbopack",
     "build": "yarn run manifest && next build",
     "start": "next start",
     "lint": "eslint .",
-    "manifest": "npx -y sanity@latest manifest extract --path public/studio/static",
+    "manifest": "sanity manifest extract --path public/studio/static",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
