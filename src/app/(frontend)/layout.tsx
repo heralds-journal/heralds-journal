@@ -1,12 +1,14 @@
 // import { GoogleTagManager } from '@next/third-parties/google'
-import Root from '@/ui/Root'
+import '@/styles/app.css'
 import { NuqsAdapter } from 'nuqs/adapters/next/app'
+
+import Root from '@/ui/Root'
 import SkipToContent from '@/ui/SkipToContent'
 import Announcement from '@/ui/Announcement'
 import Header from '@/ui/header'
 import Footer from '@/ui/footer'
 import VisualEditingControls from '@/ui/VisualEditingControls'
-import '@/styles/app.css'
+
 
 export default async function RootLayout({
 	children,

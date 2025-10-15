@@ -7930,7 +7930,7 @@ next-sanity-image@^6.2.0:
   dependencies:
     "@sanity/image-url" "^1.1.0"
 
-next-sanity@^9.12.3:
+next-sanity@^9.7.0:
   version "9.12.3"
   resolved "https://registry.yarnpkg.com/next-sanity/-/next-sanity-9.12.3.tgz#dd60597e1708f27dbea9bca0996df99fddcfa7b8"
   integrity sha512-cmMGF7kyZGy4FupKeldUd13OqSa5+QpCJ7k7L9xp4l0Aeb69+phqnOd12yGnRRuOfGxZkQootzNTCXegwPXv8Q==
