@@ -14,6 +14,11 @@ const client = createClient({
 })
 
 export default {
+	webpack(config) {
+		config.infrastructureLogging = { level: 'error' }
+		return config
+	},
+
 	images: {
 		dangerouslyAllowSVG: true,
 		remotePatterns: [

@@ -3,14 +3,14 @@ import {
 	type NextRequest,
 	type MiddlewareConfig,
 } from 'next/server'
-import { getTranslations } from './sanity/lib/queries'
-import { DEFAULT_LANG, langCookieName } from './lib/i18n'
+import { getTranslationsEdge } from '@/sanity/lib/queries-edge'
+import { DEFAULT_LANG, langCookieName } from '@/lib/i18n'
 
 async function middleware(request: NextRequest) {
 	const { pathname } = request.nextUrl
 	const lang = request.cookies.get(langCookieName)?.value
 
-	const T = await getTranslations()
+	const T = await getTranslationsEdge()
 
 	const isPrefixed = !!T.find((t) =>
 		t.translations?.some(({ slug }) => slug === pathname),

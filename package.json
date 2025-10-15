@@ -6,10 +6,10 @@
 	"scripts": {
 		"dev": "next dev",
 		"dev:turbopack": "next dev --turbopack",
-		"build": "yarn run manifest && next build",
+		"build": "yarn fmt && yarn manifest && next build",
 		"start": "next start",
 		"lint": "eslint .",
-		"fmt": "prettier --write .",
+		"fmt": "prettier --write . --log-level silent",
 		"manifest": "sanity manifest extract --path public/studio/static",
 		"typecheck": "tsc --noEmit"
 	},
