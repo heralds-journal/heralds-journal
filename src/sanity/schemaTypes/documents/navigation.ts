@@ -26,7 +26,7 @@ export default defineType({
 			items: 'items',
 		},
 		prepare: ({ title, items }) => {
-			const t = title?.toLowerCase() ?? '';
+			const t = title?.toLowerCase() ?? ''
 
 			return {
 				title,

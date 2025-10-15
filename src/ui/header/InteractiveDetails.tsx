@@ -26,18 +26,18 @@ export default function InteractiveDetails({
 
 	const events = !isMobile
 		? {
-			onMouseEnter: () => {
-				if (delay) {
-					timeout = setTimeout(() => setOpen(true), delay)
-				} else {
-					setOpen(true)
-				}
-			},
-			onMouseLeave: () => {
-				if (delay) clearTimeout(timeout)
-				setOpen(false)
-			},
-		}
+				onMouseEnter: () => {
+					if (delay) {
+						timeout = setTimeout(() => setOpen(true), delay)
+					} else {
+						setOpen(true)
+					}
+				},
+				onMouseLeave: () => {
+					if (delay) clearTimeout(timeout)
+					setOpen(false)
+				},
+			}
 		: {}
 
 	// Close after navigation

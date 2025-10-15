@@ -25,27 +25,8 @@ export function InfoWidget({
 								gap={4}
 							>
 								<Flex align="center" gap={2}>
-									🖤 SanityPress
+									SanityPress
 									{version && <Code size={1}>{`v${version}`}</Code>}
-								</Flex>
-
-								<Flex align="center" gap={4}>
-									{social.map((item, key) => (
-										<a
-											style={{
-												display: 'inline-block',
-												aspectRatio: '1',
-												width: 16,
-												height: 16,
-												backgroundColor: 'var(--card-fg-color)',
-												mask: `url('https://ic0n.dev/${item.icon}') center/cover`,
-											}}
-											href={item.url}
-											target="_blank"
-											title={item.label}
-											key={key}
-										/>
-									))}
 								</Flex>
 							</Flex>
 						</Heading>
@@ -75,33 +56,6 @@ export function InfoWidget({
 		),
 	}
 }
-
-const social: Array<{
-	icon: string
-	url: string
-	label: string
-}> = [
-	{
-		icon: 'si/SiSanity',
-		url: 'https://sanity.io/templates/sanitypress',
-		label: 'Sanity.io',
-	},
-	{
-		icon: 'fa6/FaGithub',
-		url: 'https://github.com/nuotsu/sanitypress',
-		label: 'GitHub',
-	},
-	{
-		icon: 'fa6/FaBluesky',
-		url: 'https://bsky.app/profile/sanitypress.dev',
-		label: 'Bluesky',
-	},
-	{
-		icon: 'fa6/FaXTwitter',
-		url: 'https://x.com/sanitypress',
-		label: 'X',
-	},
-]
 
 const linkGroups: Array<{
 	title: string
@@ -146,21 +100,21 @@ const linkGroups: Array<{
 			},
 		],
 	},
-	{
-		title: 'GitHub',
-		links: [
-			{
-				label: 'Changelog',
-				url: 'https://github.com/nuotsu/sanitypress/releases',
-			},
-			{
-				label: 'Discussions',
-				url: 'https://github.com/nuotsu/sanitypress/discussions',
-			},
-			{
-				label: 'Report an issue',
-				url: 'https://github.com/nuotsu/sanitypress/issues',
-			},
-		],
-	},
+	// {
+	// 	title: 'GitHub',
+	// 	links: [
+	// 		{
+	// 			label: 'Changelog',
+	// 			url: 'https://github.com/nuotsu/sanitypress/releases',
+	// 		},
+	// 		{
+	// 			label: 'Discussions',
+	// 			url: 'https://github.com/nuotsu/sanitypress/discussions',
+	// 		},
+	// 		{
+	// 			label: 'Report an issue',
+	// 			url: 'https://github.com/nuotsu/sanitypress/issues',
+	// 		},
+	// 	],
+	// },
 ]

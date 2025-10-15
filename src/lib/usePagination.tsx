@@ -44,7 +44,7 @@ export function usePagination<T>({
 		prev = 'Prev',
 		next = 'Next',
 		hidePage,
-		onClick = () => { },
+		onClick = () => {},
 		...props
 	}: PaginationProps) => {
 		if ((atStart && atEnd) || !paginatedItems?.length) return null

@@ -9,7 +9,6 @@ import Header from '@/ui/header'
 import Footer from '@/ui/footer'
 import VisualEditingControls from '@/ui/VisualEditingControls'
 
-
 export default async function RootLayout({
 	children,
 }: {

@@ -7,10 +7,10 @@ import type { StringInputProps, StringSchemaType } from 'sanity'
 export type Preset<T = string> =
 	| T
 	| {
-		title?: string
-		value: T
-		icon?: React.ComponentType
-	}
+			title?: string
+			value: T
+			icon?: React.ComponentType
+	  }
 
 export function getPreset(
 	preset: Preset,

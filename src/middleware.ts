@@ -29,9 +29,9 @@ async function middleware(request: NextRequest) {
 	const cookieMatchesCurrentPrefix =
 		// cookie matches current prefix
 		lang ===
-		available.translations?.find((t) =>
-			[t.slugBlogAlt, t.slug].includes(pathname),
-		)?.language ||
+			available.translations?.find((t) =>
+				[t.slugBlogAlt, t.slug].includes(pathname),
+			)?.language ||
 		// default language and current path is the base path
 		(lang === DEFAULT_LANG && pathname === available.slug)
 

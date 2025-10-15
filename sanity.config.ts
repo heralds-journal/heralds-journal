@@ -29,17 +29,17 @@ export default defineConfig({
 	basePath: '/studio',
 
 	plugins: [
-		structure,
-		presentation,
 		dashboardTool({
-			name: 'info',
-			title: 'Info',
+			name: 'dashboard',
+			title: 'Dashboard',
 			widgets: [
 				projectInfoWidget(),
 				projectUsersWidget(),
 				InfoWidget({ version: pkg.version }),
 			],
 		}),
+		structure,
+		presentation,
 		visionTool({ defaultApiVersion: apiVersion }),
 		codeInput(),
 		documentInternationalization({

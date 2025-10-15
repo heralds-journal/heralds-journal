@@ -27,7 +27,11 @@ export default function List({
 	)
 }
 
-export function filterPosts(posts: Sanity.BlogPost[], category?: string | null, author?: string | null) {
+export function filterPosts(
+	posts: Sanity.BlogPost[],
+	category?: string | null,
+	author?: string | null,
+) {
 	return posts.filter((post) => {
 		if (category !== 'All' && author)
 			return (

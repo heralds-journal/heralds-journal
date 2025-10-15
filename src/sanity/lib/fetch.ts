@@ -23,23 +23,23 @@ export async function fetchSanity<T = any>({
 		params,
 		preview
 			? {
-				stega: true,
-				perspective: 'drafts',
-				useCdn: false,
-				token,
-				next: {
-					revalidate: 0,
-					...next,
-				},
-			}
+					stega: true,
+					perspective: 'drafts',
+					useCdn: false,
+					token,
+					next: {
+						revalidate: 0,
+						...next,
+					},
+				}
 			: {
-				perspective: 'published',
-				useCdn: true,
-				next: {
-					revalidate: 3600, // every hour
-					...next,
+					perspective: 'published',
+					useCdn: true,
+					next: {
+						revalidate: 3600, // every hour
+						...next,
+					},
 				},
-			},
 	)
 }
 

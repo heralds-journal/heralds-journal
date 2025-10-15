@@ -24,9 +24,7 @@ function UidInput({ elementProps, path }: any) {
 				icon={checked ? VscCheck : VscCopy}
 				disabled={checked}
 				onClick={() => {
-					navigator.clipboard.writeText(
-						'#' + (elementProps.value || moduleKey),
-					)
+					navigator.clipboard.writeText('#' + (elementProps.value || moduleKey))
 
 					setChecked(true)
 					setTimeout(() => setChecked(false), 1000)

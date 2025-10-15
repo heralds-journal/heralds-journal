@@ -77,7 +77,9 @@ export function ResponsiveImg({
 
 	return (
 		<picture {...pictureProps}>
-			{responsive?.map((r, key) => <Source {...r} key={key} />)}
+			{responsive?.map((r, key) => (
+				<Source {...r} key={key} />
+			))}
 			<Img {...imgProps} {...props} />
 		</picture>
 	)
@@ -93,12 +95,12 @@ function generateSrc(
 	const w_calc = !!w // if width is provided
 		? Number(w)
 		: // if height is provided, calculate width
-		!!h && Math.floor((Number(h) * w_orig) / h_orig)
+			!!h && Math.floor((Number(h) * w_orig) / h_orig)
 
 	const h_calc = !!h // if height is provided
 		? Number(h)
 		: // if width is provided, calculate height
-		!!w && Math.floor((Number(w) * h_orig) / w_orig)
+			!!w && Math.floor((Number(w) * h_orig) / w_orig)
 
 	return {
 		src: urlFor(image)
