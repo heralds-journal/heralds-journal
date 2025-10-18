@@ -4,6 +4,7 @@ import type {
 	ListItem,
 	Divider,
 } from 'sanity/structure'
+import { apiVersion } from '@/sanity/lib/env'
 
 export const singleton = (
 	S: StructureBuilder,
@@ -40,10 +41,12 @@ export const directory = (
 			S.documentList()
 				.id(`page.${path.replaceAll('/', '-')}`)
 				.filter(
-					`
-						string::startsWith(metadata.slug.current, $path)
-						${maxLevel !== undefined ? `&& count(string::split(metadata.slug.current, '/')) <= ${maxLevel + 1}` : ''}
-					`,
+					`_type == "page" && string::startsWith(metadata.slug.current, $path)
+					${maxLevel !== undefined ? `&& count(string::split(metadata.slug.current, '/')) <= ${maxLevel + 1}` : ''}`,
 				)
-				.params({ path: path + '/' }),
+				.apiVersion(apiVersion)
+				.params({ path: path + '/' })
+				.defaultOrdering([
+					{ field: 'metadata.slug.current', direction: 'asc' },
+				]),
 		)

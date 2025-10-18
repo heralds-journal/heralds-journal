@@ -18,6 +18,7 @@ import { supportedLanguages } from '@/lib/i18n'
 import { documentInternationalization } from '@sanity/document-internationalization'
 import { schemaTypes } from './src/sanity/schemaTypes'
 import resolveUrl from '@/lib/resolveUrl'
+import { pageActions } from '@/sanity/schemaTypes/actions/page'
 
 const singletonTypes = ['site']
 
@@ -50,25 +51,39 @@ export default defineConfig({
 
 	schema: {
 		types: schemaTypes,
-		templates: (templates) =>
+		templates: (templates: any[]) =>
 			templates.filter(
-				({ schemaType }) => !singletonTypes.includes(schemaType),
+				({ schemaType }: any) => !singletonTypes.includes(schemaType),
 			),
 	},
 	document: {
-		productionUrl: async (prev, { document }) => {
+		productionUrl: async (prev: any, { document }: any) => {
 			if (['page', 'blog.post'].includes(document?._type)) {
 				return resolveUrl(document as Sanity.PageBase, { base: true })
 			}
 			return prev
 		},
 
-		actions: (input, { schemaType }) => {
-			if (singletonTypes.includes(schemaType)) {
+		actions: (input: any[], ctx: any) => {
+			const schemaType = ctx?.schemaType
+			const schemaTypeName =
+				typeof schemaType === 'string' ? schemaType : schemaType?.name
+			if (singletonTypes.includes(schemaTypeName)) {
 				return input.filter(
-					({ action }) =>
+					({ action }: any) =>
 						action && ['publish', 'discardChanges', 'restore'].includes(action),
 				)
+			}
+
+			if (schemaTypeName === 'page') {
+				try {
+					console.log('[sanity.config] actions: wiring pageActions', {
+						schemaTypeName,
+						count: input?.length,
+					})
+				} catch {}
+
+				return pageActions(input, ctx)
 			}
 
 			return input
