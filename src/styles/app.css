@@ -60,8 +60,23 @@
 		scroll-behavior: smooth;
 	}
 
+	html,
+	body {
+		height: 100%;
+	}
+
 	body:has(dialog[open]) {
 		overflow: hidden;
+	}
+
+	body {
+		display: flex;
+		flex-direction: column;
+	}
+
+	body > main {
+		flex-shrink: none;
+		flex-grow: 1;
 	}
 
 	label,

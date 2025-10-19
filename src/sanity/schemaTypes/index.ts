@@ -6,6 +6,7 @@ import page from './documents/page'
 import globalModule from './documents/global-module'
 import blogPost from './documents/blog.post'
 import blogCategory from './documents/blog.category'
+import eventPost from './documents/schedule'
 import navigation from './documents/navigation'
 import redirect from './documents/redirect'
 
@@ -59,6 +60,7 @@ export const schemaTypes: SchemaTypeDefinition[] = [
 	globalModule,
 	blogPost,
 	blogCategory,
+	eventPost,
 	navigation,
 
 	// miscellaneous

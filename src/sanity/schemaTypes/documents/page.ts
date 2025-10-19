@@ -47,7 +47,7 @@ export default defineType({
 			language: 'language',
 		},
 		prepare: ({ title, slug, media, noindex, language }) => ({
-			title,
+			title: `${'– '.repeat(slug?.match(/\//g)?.length ?? 0)}${title}`,
 			subtitle: [
 				language && `[${language}] `,
 				slug && (slug === 'index' ? '/' : `/${slug}`),

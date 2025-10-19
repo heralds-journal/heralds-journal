@@ -1,14 +1,14 @@
 import { structureTool } from 'sanity/structure'
 import { apiVersion } from '@/sanity/lib/env'
 import { singleton, group, directory } from './lib/builders'
-import { VscFiles, VscServerProcess } from 'react-icons/vsc'
+import { VscFiles, VscSettings } from 'react-icons/vsc'
 
 export const structure = structureTool({
 	structure: (S: any) =>
 		S.list()
 			.title('Content')
 			.items([
-				singleton(S, 'site', 'Site settings').icon(VscServerProcess),
+				singleton(S, 'site', 'Site settings').icon(VscSettings),
 				S.divider(),
 
 				S.documentTypeListItem('page')
@@ -33,6 +33,7 @@ export const structure = structureTool({
 				S.documentTypeListItem('global-module').title('Global modules'),
 				S.divider(),
 
+				S.documentTypeListItem('schedule').title('Scheduled Events'),
 				S.documentTypeListItem('blog.post').title('Blog posts'),
 				S.documentTypeListItem('blog.category').title('Blog categories'),
 				S.divider(),

@@ -86,6 +86,68 @@ export const presentation = presentationTool({
 					],
 				}),
 			}),
+			schedule: defineLocations({
+				select: {
+					title: 'title',
+					slug: 'metadata.slug.current',
+					eventType: 'eventSchedule.eventType',
+					startDateTime: 'eventSchedule.startDateTime',
+					endDateTime: 'eventSchedule.endDateTime',
+					allDayStartDate: 'eventSchedule.allDayStartDate',
+					allDayEndDate: 'eventSchedule.allDayEndDate',
+					legacyTitle: 'eventSchedule.title',
+					legacyStart: 'start',
+					legacyEnd: 'end',
+				},
+				resolve: (doc) => {
+					const title = doc?.title || doc?.legacyTitle || 'Untitled'
+					const eventType =
+						doc?.eventType ||
+						(doc?.allDayStartDate || doc?.allDayEndDate ? 'allDay' : 'timed')
+					const subtitle = (() => {
+						if (eventType === 'allDay') {
+							const start = doc?.allDayStartDate
+								? new Date(
+									`${doc.allDayStartDate}T00:00:00`,
+								).toLocaleDateString()
+								: null
+							const end = doc?.allDayEndDate
+								? new Date(`${doc.allDayEndDate}T00:00:00`).toLocaleDateString()
+								: null
+							if (start && end) {
+								return `From ${start} to ${end}`
+							}
+							if (start) {
+								return `All day on ${start}`
+							}
+							return 'No dates set'
+						}
+						const startSource = doc?.startDateTime || doc?.legacyStart
+						const endSource = doc?.endDateTime || doc?.legacyEnd
+						const start = startSource ? new Date(startSource) : null
+						const end = endSource ? new Date(endSource) : null
+						if (start && end) {
+							return `From ${start.toLocaleString()} to ${end.toLocaleString()}`
+						}
+						if (start) {
+							return `Starts ${start.toLocaleString()}`
+						}
+						if (end) {
+							return `Ends ${end.toLocaleString()}`
+						}
+						return 'No dates set'
+					})()
+					return {
+						locations: [
+							{
+								title,
+								subtitle,
+								href: doc?.slug ? `/events/${doc.slug}` : '/events', // Adjust route as needed
+							},
+						],
+					}
+				},
+			}),
 		},
 	},
 })
