@@ -1,8 +1,14 @@
 import { defineField, defineType } from 'sanity'
 import { PiFlowArrow } from 'react-icons/pi'
+import RedirectSourceInput from '@/sanity/ui/RedirectSourceInput'
 import resolveSlug from '@/sanity/lib/resolveSlug'
 
 const regex = /^(\/|https?:\/\/)/
+
+const redirectSourceOptions = {
+	basePath: '/go',
+	idLength: 6,
+} as const satisfies Record<string, unknown>
 
 export default defineType({
 	name: 'redirect',
@@ -15,6 +21,10 @@ export default defineType({
 			description: 'Redirect from',
 			placeholder: 'e.g. /old-path, /old-blog/:slug',
 			type: 'string',
+			options: redirectSourceOptions as any,
+			components: {
+				input: RedirectSourceInput,
+			},
 			validation: (Rule) => Rule.required().regex(regex),
 		}),
 		defineField({

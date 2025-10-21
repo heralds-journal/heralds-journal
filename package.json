@@ -25,6 +25,7 @@
 		"@tailwindcss/postcss": "^4.1.14",
 		"clsx": "^2.1.1",
 		"feed": "^5.1.0",
+		"nanoid": "^5.1.6",
 		"next": "^15.5.4",
 		"next-sanity": "^9.7.0",
 		"next-sanity-image": "^6.2.0",
