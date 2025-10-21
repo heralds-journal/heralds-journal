@@ -19,6 +19,12 @@ const errors = {
 		'Solution: Add a new Global module document in your Sanity Studio with the path "blog/".\n' +
 		'Also add the Blog post content module to display blog post content.\n\n' +
 		'💁‍♂️ https://sanitypress.dev/docs/errors#missing-blog-template',
+
+	missingEventsTemplate:
+		'Missing events template: 📅 Your scheduled events are nowhere to be found...\n\n' +
+		'Solution: Add a new Global module document in your Sanity Studio with the path "events/".\n' +
+		'Also add the Schedule post content module to display schedule content.\n\n' +
+		'💁‍♂️ https://sanitypress.dev/docs/errors#missing-events-template',
 }
 
 export default errors

@@ -9,7 +9,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 		query: groq`{
 			'pages': *[
 				_type == 'page' &&
-				!(metadata.slug.current in ['404']) &&
+				!(metadata.slug.current in ['not-found']) &&
 				metadata.noIndex != true
 			]|order(metadata.slug.current){
 				'url': (

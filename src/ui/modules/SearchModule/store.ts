@@ -32,12 +32,13 @@ const SCOPE_MAP = {
 	path: groq`
 		_type == 'page' &&
 		metadata.slug.current match $path &&
-		!(metadata.slug.current in ['404'])
+		!(metadata.slug.current in ['not-found'])
 	`,
 	'blog posts': groq`_type == 'blog.post'`,
+	'events': groq`_type == 'schedule'`,
 	all: groq`
-		_type in ['page', 'blog.post'] &&
-		!(metadata.slug.current in ['404'])
+		_type in ['page', 'blog.post', 'schedule'] &&
+		!(metadata.slug.current in ['not-found'])
 	`,
 } as const
 

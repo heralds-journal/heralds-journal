@@ -23,6 +23,9 @@ export default defineField({
 		{ type: 'pricing-list' },
 		{ type: 'richtext-module' },
 		{ type: 'schedule-module' },
+		{ type: 'schedule-post-content' },
+		{ type: 'schedule-frontpage' },
+		{ type: 'schedule-list' },
 		{ type: 'search-module' },
 		{ type: 'stat-list' },
 		{ type: 'step-list' },
@@ -45,6 +48,10 @@ export default defineField({
 					name: 'blog',
 					of: ['blog-frontpage', 'blog-list', 'blog-post-content'],
 				},
+				{
+					name: 'schedule',
+					of: ['schedule-frontpage', 'schedule-list', 'schedule-post-content'],
+				},
 				{ name: 'hero', of: ['hero', 'hero.saas', 'hero.split'] },
 				{
 					name: 'lists',
@@ -56,6 +63,7 @@ export default defineField({
 						'logo-list',
 						'person-list',
 						'pricing-list',
+						'schedule-list',
 						'stat-list',
 						'step-list',
 						'testimonial-list',

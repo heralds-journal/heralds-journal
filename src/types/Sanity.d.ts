@@ -70,6 +70,21 @@ declare global {
 			slug: { current: string }
 		}
 
+		interface Schedule extends PageBase {
+			readonly _type: 'schedule'
+			title: string
+			content?: string
+			eventSchedule: {
+				eventType: 'timed' | 'allDay'
+				startDateTime?: string
+				endDateTime?: string
+				allDayStartDate?: string
+				allDayEndDate?: string
+			}
+			relatedContent?: (BlogPost | Page)[]
+			categories?: BlogCategory[]
+		}
+
 		// miscellaneous
 
 		interface Announcement extends SanityDocument {

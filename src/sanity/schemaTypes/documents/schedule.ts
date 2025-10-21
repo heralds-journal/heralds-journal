@@ -6,13 +6,17 @@ export default defineType({
 	title: 'Scheduled Event',
 	icon: VscMegaphone,
 	type: 'document',
-	groups: [{ name: 'content', title: 'Content' }],
+	groups: [
+		{ name: 'content', title: 'Content', default: true },
+		{ name: 'metadata', title: 'Metadata' },
+	],
 	fields: [
 		defineField({
 			name: 'title',
 			title: 'Schedule title',
 			type: 'string',
 			validation: (Rule) => Rule.required(),
+			group: 'content',
 		}),
 		defineField({
 			name: 'content',
@@ -23,6 +27,7 @@ export default defineType({
 		defineField({
 			name: 'eventSchedule',
 			title: 'Schedule',
+			group: 'content',
 			type: 'object',
 			fields: [
 				defineField({
@@ -46,7 +51,8 @@ export default defineType({
 					hidden: ({ parent }) => parent?.eventType === 'allDay',
 					validation: (Rule) =>
 						Rule.custom((value, context) => {
-							if (context.parent?.eventType !== 'timed') {
+							const parent = context.parent as any
+							if (parent?.eventType !== 'timed') {
 								return true
 							}
 							return value ? true : 'Set a start date and time'
@@ -60,10 +66,11 @@ export default defineType({
 					description: 'Leave empty for open-ended sessions.',
 					validation: (Rule) =>
 						Rule.custom((value, context) => {
-							if (context.parent?.eventType !== 'timed' || !value) {
+							const parent = context.parent as any
+							if (parent?.eventType !== 'timed' || !value) {
 								return true
 							}
-							const startDateTime = context.parent?.startDateTime
+							const startDateTime = parent?.startDateTime
 							if (startDateTime && value <= startDateTime) {
 								return 'End must be after the start'
 							}
@@ -77,7 +84,8 @@ export default defineType({
 					hidden: ({ parent }) => parent?.eventType !== 'allDay',
 					validation: (Rule) =>
 						Rule.custom((value, context) => {
-							if (context.parent?.eventType !== 'allDay') {
+							const parent = context.parent as any
+							if (parent?.eventType !== 'allDay') {
 								return true
 							}
 							return value ? true : 'Set a start date'
@@ -91,10 +99,11 @@ export default defineType({
 					hidden: ({ parent }) => parent?.eventType !== 'allDay',
 					validation: (Rule) =>
 						Rule.custom((value, context) => {
-							if (context.parent?.eventType !== 'allDay' || !value) {
+							const parent = context.parent as any
+							if (parent?.eventType !== 'allDay' || !value) {
 								return true
 							}
-							const allDayStartDate = context.parent?.allDayStartDate
+							const allDayStartDate = parent?.allDayStartDate
 							if (allDayStartDate && value < allDayStartDate) {
 								return 'End date must be on or after the start date'
 							}
@@ -126,6 +135,18 @@ export default defineType({
 					to: [{ type: 'blog.category' }],
 				},
 			],
+			group: 'content',
+		}),
+		defineField({
+			name: 'metadata',
+			type: 'metadata',
+			group: 'metadata',
+		}),
+		defineField({
+			name: 'language',
+			type: 'string',
+			readOnly: true,
+			hidden: true,
 		}),
 	],
 	preview: {

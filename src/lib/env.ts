@@ -9,6 +9,7 @@ if (!process.env.NEXT_PUBLIC_BASE_URL) {
 }
 
 export const BLOG_DIR = 'blog'
+export const EVENTS_DIR = 'events'
 
 export const BASE_URL = dev
 	? 'http://localhost:3000'

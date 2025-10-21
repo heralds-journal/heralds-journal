@@ -13,6 +13,7 @@ import HeroSaaS from './HeroSaaS'
 import LogoList from './LogoList'
 import RichtextModule from './RichtextModule'
 import ScheduleModule from './ScheduleModule'
+import ScheduleContent from './ScheduleModule/ScheduleContent'
 import SearchModule from './SearchModule'
 import StatList from './StatList'
 import StepList from './StepList'
@@ -42,6 +43,9 @@ const MODULE_MAP = {
 	'pricing-list': dynamic(() => import('./PricingList')),
 	'richtext-module': RichtextModule,
 	'schedule-module': ScheduleModule,
+	'schedule-post-content': ScheduleContent,
+	'schedule-frontpage': dynamic(() => import('./ScheduleModule/ScheduleFrontpage')),
+	'schedule-list': dynamic(() => import('./ScheduleModule/ScheduleList')),
 	'search-module': SearchModule,
 	'stat-list': StatList,
 	'step-list': StepList,
@@ -54,17 +58,21 @@ export default function Modules({
 	modules,
 	page,
 	post,
+	schedule,
 }: {
 	modules?: Sanity.Module[]
 	page?: Sanity.Page
 	post?: Sanity.BlogPost
+	schedule?: Sanity.Schedule
 }) {
 	const getAdditionalProps = (module: Sanity.Module) => {
 		switch (module._type) {
 			case 'blog-post-content':
 				return { post }
+			case 'schedule-post-content':
+				return { schedule }
 			case 'breadcrumbs':
-				return { currentPage: post || page }
+				return { currentPage: post || page || schedule }
 			default:
 				return {}
 		}
@@ -72,12 +80,16 @@ export default function Modules({
 
 	return (
 		<>
-			{modules?.map((module) => {
+			{modules?.map((module, index) => {
 				if (!module) return null
 
-				const Component = MODULE_MAP[module._type as keyof typeof MODULE_MAP]
+				const Component = MODULE_MAP[
+					module._type as keyof typeof MODULE_MAP
+				] as any
 
 				if (!Component) return null
+
+				const key = module._key || `${module._type}-${index}`
 
 				return (
 					<Component
@@ -91,7 +103,7 @@ export default function Modules({
 								path: `page[_key == "${module._key}"]`,
 							}).toString()
 						}
-						key={module._key}
+						key={key}
 					/>
 				)
 			})}

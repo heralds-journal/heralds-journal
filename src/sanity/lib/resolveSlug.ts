@@ -1,4 +1,4 @@
-import { BLOG_DIR } from '@/lib/env'
+import { BLOG_DIR, EVENTS_DIR } from '@/lib/env'
 
 export default function resolveSlug({
 	_type,
@@ -16,7 +16,13 @@ export default function resolveSlug({
 	if (external) return external
 
 	if (internal) {
-		const segment = _type === 'blog.post' ? `/${BLOG_DIR}/` : '/'
+		let segment = '/'
+		if (_type === 'blog.post') {
+			segment = `/${BLOG_DIR}/`
+		} else if (_type === 'schedule') {
+			segment = `/${EVENTS_DIR}/`
+		}
+
 		const path = internal === 'index' ? null : internal
 
 		return [segment, path, params].filter(Boolean).join('')

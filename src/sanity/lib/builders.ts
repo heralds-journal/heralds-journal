@@ -15,10 +15,10 @@ export const singleton = (
 		.id(id)
 		.title(
 			title ||
-				id
-					.split(/(?=[A-Z])/)
-					.map((w) => w.charAt(0).toUpperCase() + w.slice(1))
-					.join(' '),
+			id
+				.split(/(?=[A-Z])/)
+				.map((w) => w.charAt(0).toUpperCase() + w.slice(1))
+				.join(' '),
 		)
 		.child(S.editor().id(id).schemaType(id).documentId(id))
 
@@ -29,10 +29,15 @@ export const group = (
 ): ListItemBuilder =>
 	S.listItem().title(title).child(S.list().title(title).items(items))
 
+type OrderingMenuItem = ReturnType<StructureBuilder['orderingMenuItem']>
+
 export const directory = (
 	S: StructureBuilder,
 	path: string,
-	{ maxLevel }: { maxLevel?: number } = {},
+	{
+		maxLevel,
+		menuItems,
+	}: { maxLevel?: number; menuItems?: OrderingMenuItem[] } = {},
 ) =>
 	S.listItem()
 		.title(`/${path}`)
@@ -46,6 +51,23 @@ export const directory = (
 				)
 				.apiVersion(apiVersion)
 				.params({ path: path + '/' })
+				.menuItems(
+					menuItems ?? [
+						S.orderingMenuItem({
+							name: 'slugAsc',
+							title: 'URL slug (A→Z)',
+							by: [{ field: 'metadata.slug.current', direction: 'asc' }],
+						}),
+						S.orderingMenuItem({
+							name: 'updatedDesc',
+							title: 'Last updated',
+							by: [
+								{ field: '_updatedAt', direction: 'desc' },
+								{ field: '_createdAt', direction: 'desc' },
+							],
+						}),
+					],
+				)
 				.defaultOrdering([
 					{ field: 'metadata.slug.current', direction: 'asc' },
 				]),

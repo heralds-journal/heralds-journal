@@ -2,7 +2,7 @@
 
 import { defineLocations, presentationTool } from 'sanity/presentation'
 import { groq } from 'next-sanity'
-import { BLOG_DIR } from '@/lib/env'
+import { BLOG_DIR, EVENTS_DIR } from '@/lib/env'
 
 export const presentation = presentationTool({
 	name: 'editor',
@@ -108,8 +108,8 @@ export const presentation = presentationTool({
 						if (eventType === 'allDay') {
 							const start = doc?.allDayStartDate
 								? new Date(
-									`${doc.allDayStartDate}T00:00:00`,
-								).toLocaleDateString()
+										`${doc.allDayStartDate}T00:00:00`,
+									).toLocaleDateString()
 								: null
 							const end = doc?.allDayEndDate
 								? new Date(`${doc.allDayEndDate}T00:00:00`).toLocaleDateString()
@@ -142,7 +142,9 @@ export const presentation = presentationTool({
 							{
 								title,
 								subtitle,
-								href: doc?.slug ? `/events/${doc.slug}` : '/events', // Adjust route as needed
+								href: doc?.slug
+									? `/${EVENTS_DIR}/${doc.slug}`
+									: `/${EVENTS_DIR}`,
 							},
 						],
 					}

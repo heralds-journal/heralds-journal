@@ -7,8 +7,9 @@ import {
 	VscSearch,
 	VscEdit,
 	VscMortarBoard,
+	VscMegaphone
 } from 'react-icons/vsc'
-import { BLOG_DIR } from '@/lib/env'
+import { BLOG_DIR, EVENTS_DIR } from '@/lib/env'
 
 export default defineType({
 	name: 'page',
@@ -57,9 +58,10 @@ export default defineType({
 			media:
 				media ||
 				(slug === 'index' && VscHome) ||
-				(slug === '404' && VscQuestion) ||
+				(slug === 'not-found' && VscQuestion) ||
 				(slug === 'search' && VscSearch) ||
 				(slug === BLOG_DIR && VscEdit) ||
+				(slug === EVENTS_DIR && VscMegaphone) ||
 				(slug?.startsWith('docs') && VscMortarBoard) ||
 				(noindex && VscEyeClosed),
 		}),

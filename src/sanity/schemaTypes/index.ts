@@ -46,6 +46,9 @@ import personList from './modules/person-list'
 import pricingList from './modules/pricing-list'
 import richtextModule from './modules/richtext-module'
 import scheduleModule from './modules/schedule-module'
+import schedulePostContent from './modules/schedule-post-content'
+import scheduleFrontpage from './modules/schedule-frontpage'
+import scheduleList from './modules/schedule-list'
 import searchModule from './modules/search-module'
 import statList from './modules/stat-list'
 import stepList from './modules/step-list'
@@ -100,6 +103,9 @@ export const schemaTypes: SchemaTypeDefinition[] = [
 	pricingList,
 	richtextModule,
 	scheduleModule,
+	schedulePostContent,
+	scheduleFrontpage,
+	scheduleList,
 	searchModule,
 	statList,
 	stepList,
